@@ -2,7 +2,7 @@ import re
 
 from osv import Bug
 
-from errata import *
+from models.errata import *
 from settings import collection_name_to_ecosystem
 
 

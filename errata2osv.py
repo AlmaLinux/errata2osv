@@ -3,9 +3,7 @@ import os
 import sys
 from argparse import ArgumentParser
 
-from converter import OSVBugFromErrataUpdate
-from errata import *
-from osv_bug import *
+from models import *
 
 
 def errata_to_osv(updateinfo, target_dir, ecosystem=None):
