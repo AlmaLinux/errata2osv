@@ -80,7 +80,13 @@ class ErrataUpdateXMLView:
         try:
             return datetime.datetime.strptime(date_str, '%Y-%m-%d %H:%M:%S %Z')
         except ValueError:
-            return datetime.datetime.strptime(date_str, '%Y-%m-%d %H:%M:%S')
+            try:
+                return datetime.datetime.strptime(date_str, '%Y-%m-%d %H:%M:%S')
+            except ValueError:
+                if not date_str:
+                    raise ValueError(f'errata update {self.id} has empty date string')
+                else:
+                    raise ValueError(f'errata update {self.id} has invalid date format: {date_str}')
 
 
 class ErrataXMLView:
