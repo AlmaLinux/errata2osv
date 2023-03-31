@@ -17,13 +17,13 @@ In order to map errata collection names to OSV ecosystems, one must fill in
 
 ```python
 collection_name_to_ecosystem = {
-    # Almalinux 8 collection names
-    r'almalinux-8-for-x86_64-appstream-rpms__8_0_default': 'Almalinux:8',
-    r'almalinux-8-for-x86_64-appstream-rpms__8_1_virt': 'Almalinux:8',
-    r'almalinux-8-for-x86_64-appstream-rpms__8_1_php': 'Almalinux:8',
-    # Almalinux 9 collection names
-    r'almalinux-9-for-x86_64-appstream-rpms__9_1_default': 'Almalinux:9',
-    r'almalinux-9-for-x86_64-appstream-rpms__9_default': 'Almalinux:9',
+    # AlmaLinux 8 collection names
+    r'almalinux-8-for-x86_64-appstream-rpms__8_0_default': 'AlmaLinux:8',
+    r'almalinux-8-for-x86_64-appstream-rpms__8_1_virt': 'AlmaLinux:8',
+    r'almalinux-8-for-x86_64-appstream-rpms__8_1_php': 'AlmaLinux:8',
+    # AlmaLinux 9 collection names
+    r'almalinux-9-for-x86_64-appstream-rpms__9_1_default': 'AlmaLinux:9',
+    r'almalinux-9-for-x86_64-appstream-rpms__9_default': 'AlmaLinux:9',
 }
 ```
 
@@ -32,10 +32,10 @@ collections to the same ecosystem:
 
 ```python
 collection_name_to_ecosystem = {
-    # Almalinux 8 collection names
-    r'almalinux-8.*': 'Almalinux:8',
-    # Almalinux 9 collection names
-    r'almalinux-9.*': 'Almalinux:9',
+    # AlmaLinux 8 collection names
+    r'almalinux-8.*': 'AlmaLinux:8',
+    # AlmaLinux 9 collection names
+    r'almalinux-9.*': 'AlmaLinux:9',
 }
 ```
 
