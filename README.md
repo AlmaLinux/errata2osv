@@ -2,7 +2,7 @@
 
 ## About
 
-errata2osv is a tool to convert Red Hat Errata advisories to Open Source Vulnerability (OSV)
+errata2osv is a tool to convert Errata advisories in Red Hat format to Open Source Vulnerability (OSV)
 database format.
 
 ## Installation
