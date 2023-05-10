@@ -37,7 +37,7 @@ def _assemble_affected_packages(errata_update: ErrataUpdateXMLView, ecosystem: s
         name = collection.name
         packages = collection.packages
         for package in packages:
-            affected_packages.append({
+            affected_package = {
                 'package': {
                     'ecosystem': f_collection_name_to_ecosystem(name) if ecosystem is None else ecosystem,
                     'name': package.name,
@@ -55,7 +55,10 @@ def _assemble_affected_packages(errata_update: ErrataUpdateXMLView, ecosystem: s
                         },
                     ]
                 }]
-            })
+            }
+            if affected_package in affected_packages:
+                continue
+            affected_packages.append(affected_package)
 
     return affected_packages
 

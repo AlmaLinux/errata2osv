@@ -1,8 +1,8 @@
-from setuptools import setup
+from setuptools import find_packages, setup
 
 setup(
     name="errata2osv",
-    version='0.0.1',
+    version='0.0.2',
     author="Nikita Ivanov",
     author_email="nivanov@cloudlinux.com",
     description="Tool to convert Red Hat Errata advisories to Open Source Vulnerability (OSV) database format.",
@@ -13,6 +13,7 @@ setup(
         "MIT License",
         "Operating System :: OS Independent",
     ],
+    packages=find_packages(),
     py_modules=['errata2osv'],
     scripts=['errata2osv.py'],
     install_requires=[
