@@ -3,12 +3,14 @@ import os
 import sys
 from argparse import ArgumentParser
 
-from models import *
+from src.models import *
 
 
 def errata_to_osv(updateinfo, target_dir, ecosystem=None):
-    """Convert errata to OSV entries"""
-    """read updateinfo.xml file"""
+    """
+    Convert errata to OSV entries
+    read updateinfo.xml file
+    """
     tree = ET.parse(updateinfo)
     errata = ErrataXMLView(tree.getroot())
     for errata_update in errata.updates:

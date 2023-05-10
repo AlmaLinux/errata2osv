@@ -8,7 +8,7 @@ database format.
 ## Installation
 
 1. Install requirements from Pipfile.
-2. Configure ecosystem names in settings.py
+2. Configure ecosystem names in `src/settings.py`
 
 ## Configuration
 
