@@ -9,7 +9,8 @@ class OSVBugJsonView():
     def __init__(self, bug: osv.Bug):
         self.db_id = bug.db_id
         self.summary = bug.summary
-        self.affected_packages = copy.deepcopy(bug.affected_packages)
+        self.affected_packages = sorted(copy.deepcopy(bug.affected_packages),
+                                        key=lambda affected: affected.package.name)
         self.aliases = copy.deepcopy(bug.aliases)
         self.published = bug.published_date
         self.modified = bug.modified_date
@@ -78,5 +79,5 @@ class OSVBugJsonView():
             {
                 'url': url,
                 'type': url_type
-            } for url, url_type in self.references.items()
+            } for url, url_type in sorted(self.references.items())
         ]
