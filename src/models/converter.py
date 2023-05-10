@@ -2,8 +2,8 @@ import re
 
 from osv import Bug
 
-from models.errata import *
-from settings import collection_name_to_ecosystem
+from src.models.errata import *
+from src.settings import collection_name_to_ecosystem
 
 
 def OSVBugFromErrataUpdate(errata_update: ErrataUpdateXMLView, ecosystem=None) -> Bug:
