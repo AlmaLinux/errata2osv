@@ -1,6 +1,7 @@
 import copy
 import datetime
 import json
+from typing import List
 
 import osv
 
@@ -33,7 +34,7 @@ class OSVBugJsonView():
             'references': self.references_format_list(),
         }, indent=2)
 
-    def affected_format_list(self) -> list[dict]:
+    def affected_format_list(self) -> List[dict]:
         return [
             {
                 'package': self._package_format_dict(affected.package),
@@ -47,7 +48,7 @@ class OSVBugJsonView():
             'name': package.name,
         }
 
-    def _ranges_format_list(self, ranges: list[osv.AffectedRange2]) -> list[dict]:
+    def _ranges_format_list(self, ranges: List[osv.AffectedRange2]) -> List[dict]:
         return [
             {
                 'type': _range.type,
@@ -55,7 +56,7 @@ class OSVBugJsonView():
             } for _range in ranges
         ]
 
-    def _events_format_list(self, events: list[osv.AffectedEvent]) -> list[dict]:
+    def _events_format_list(self, events: List[osv.AffectedEvent]) -> List[dict]:
         return [
             {
                 event.type: event.value,
@@ -71,7 +72,7 @@ class OSVBugJsonView():
     def modified_format_str(self) -> str:
         return self._timestamp_format_str(self.modified)
 
-    def references_format_list(self) -> list[dict]:
+    def references_format_list(self) -> List[dict]:
         if self.references is None:
             return []
 

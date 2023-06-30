@@ -1,4 +1,5 @@
 import re
+from typing import List
 
 from osv import Bug
 
@@ -30,7 +31,7 @@ def OSVBugFromErrataUpdate(errata_update: ErrataUpdateXMLView, ecosystem=None) -
     return osv
 
 
-def _assemble_affected_packages(errata_update: ErrataUpdateXMLView, ecosystem: str) -> list:
+def _assemble_affected_packages(errata_update: ErrataUpdateXMLView, ecosystem: str) -> List:
     """Assemble affected packages from errata update"""
     affected_packages = []
     for collection in errata_update.pkglist:
@@ -80,7 +81,7 @@ def _package_full_version(package: ErrataPackageXMLView) -> str:
         return f'{package.version}-{package.release}'
 
 
-def _aliases_from_description(errata_update: ErrataUpdateXMLView) -> list:
+def _aliases_from_description(errata_update: ErrataUpdateXMLView) -> List:
     """Get aliases from description"""
     description = str(errata_update.title or '') + str(errata_update.description or '')
     return re.findall(r'CVE-\d{4}-\d{4,7}', description)
