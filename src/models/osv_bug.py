@@ -12,7 +12,7 @@ class OSVBugJsonView():
         self.summary = bug.summary
         self.affected_packages = sorted(copy.deepcopy(bug.affected_packages),
                                         key=lambda affected: affected.package.name)
-        self.aliases = copy.deepcopy(bug.aliases)
+        self.related = copy.deepcopy(bug.related)
         self.published = bug.published_date
         self.modified = bug.modified_date
         self.details = bug.details
@@ -27,7 +27,7 @@ class OSVBugJsonView():
             'id': self.db_id,
             'summary': self.summary,
             'affected': self.affected_format_list(),
-            'aliases': self.aliases,
+            'related': self.related,
             'published': self.published_format_str(),
             'modified': self.modified_format_str(),
             'details': self.details,
