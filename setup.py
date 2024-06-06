@@ -18,7 +18,7 @@ setup(
     scripts=['errata2osv.py'],
     install_requires=[
         'google-cloud-ndb>=1.12.0',
-        'osv>=0.0.18',
+        'osv==0.0.18',
         'protobuf==3.20.0',
     ],
     python_requires=">=3.8",
