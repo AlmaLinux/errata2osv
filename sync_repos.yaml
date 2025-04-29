@@ -1,0 +1,6 @@
+almalinux8:
+  repo_link: 'https://repo.almalinux.org/almalinux/8/'
+  ecosystem: 'AlmaLinux:8'
+almalinux9:
+  repo_link: 'https://repo.almalinux.org/almalinux/9/'
+  ecosystem: 'AlmaLinux:9'
