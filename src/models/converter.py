@@ -6,6 +6,8 @@ from osv import Bug
 from src.models.errata import *
 from src.settings import collection_name_to_ecosystem
 
+CVE_REGEX = r'CVE-\d{4}-\d{4,7}'
+
 
 def OSVBugFromErrataUpdate(errata_update: ErrataUpdateXMLView, ecosystem=None) -> Bug:
     """Create OSV entry from errata update"""
@@ -17,7 +19,10 @@ def OSVBugFromErrataUpdate(errata_update: ErrataUpdateXMLView, ecosystem=None) -
         logging.warning(f'errata update {errata_update.id} has no title')
     osv.summary = errata_update.title
     osv.affected_packages = _assemble_affected_packages(errata_update, ecosystem)
-    osv.upstream = _upstream_from_description(errata_update)
+    cves = _cves_from_errata(errata_update)
+    osv.upstream = cves
+    # Keep CVEs in 'related' as well, scanners like Grype read them from there
+    osv.related = list(cves)
     osv.published_date = errata_update.issued
     osv.modified_date = errata_update.updated
     if errata_update.description is None:
@@ -81,10 +86,15 @@ def _package_full_version(package: ErrataPackageXMLView) -> str:
         return f'{package.version}-{package.release}'
 
 
-def _upstream_from_description(errata_update: ErrataUpdateXMLView) -> List:
-    """Get upstreams from description"""
+def _cves_from_errata(errata_update: ErrataUpdateXMLView) -> List:
+    """Get CVEs from title, description and CVE references"""
     description = str(errata_update.title or '') + str(errata_update.description or '')
-    return re.findall(r'CVE-\d{4}-\d{4,7}', description)
+    cves = set(re.findall(CVE_REGEX, description))
+    for ref in errata_update.references:
+        if getattr(ref, 'type', None) != 'cve':
+            continue
+        cves.update(re.findall(CVE_REGEX, getattr(ref, 'id', None) or getattr(ref, 'href', '')))
+    return sorted(cves)
 
 
 def _errata_reference_type_to_osv(reference_type: str) -> str:
