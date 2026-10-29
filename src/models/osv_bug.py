@@ -5,6 +5,9 @@ from typing import List
 
 import osv
 
+# 'upstream' field was introduced in OSV schema 1.7.0
+OSV_SCHEMA_VERSION = '1.7.0'
+
 
 class OSVBugJsonView():
     def __init__(self, bug: osv.Bug):
@@ -25,6 +28,7 @@ class OSVBugJsonView():
 
     def to_json_str(self) -> str:
         return json.dumps({
+            'schema_version': OSV_SCHEMA_VERSION,
             'id': self.db_id,
             'summary': self.summary,
             'affected': self.affected_format_list(),
